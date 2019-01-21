@@ -15,7 +15,7 @@ def stripHTMLTags(s):
     cleanr = re.compile('<.*?>')
     cleantext = re.sub(cleanr, '', s)
 
-    # Replace &quot; with ''
+    # Replace reduntant characters and words with ''
     cleantext = cleantext.replace("&quot;" , '"')
     cleantext = cleantext.replace("<!--", "")
     cleantext = cleantext.replace("-->", "")
@@ -108,22 +108,20 @@ def removereduntantlines(text):
     return s
 
 
-
+#Setting the sentence that divides each of the articles from the others
 splitBy = "Hide XML section from browser"
 articles = s.split(splitBy)
 
 counter = 0
 
 
-counter = 0
-
-
+#Setting the separator for the csv file
 separator = "~"
 
 header = ('"Publication"{}"Article Title"{}"Date"{}"Article Text"'
             .format(separator,separator,separator,separator))
 print(header)
-
+#Preparing the articles for saving into a csv file
 for post in articles:
     counter = counter + 1
     if counter >= 2:
